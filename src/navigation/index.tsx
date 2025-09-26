@@ -5,13 +5,11 @@ import {
   StaticParamList,
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Image } from 'react-native';
-import bell from '../assets/bell.png';
-import newspaper from '../assets/newspaper.png';
+import { MsIcon } from 'material-symbols-react-native';
+import { msHome, msSearch } from '@material-symbols-react-native/outlined-400';
 import { Home } from './screens/Home';
-import { Profile } from './screens/Profile';
+import { Search } from './screens/Search';
 import { Settings } from './screens/Settings';
-import { Updates } from './screens/Updates';
 import { NotFound } from './screens/NotFound';
 
 const HomeTabs = createBottomTabNavigator({
@@ -19,31 +17,18 @@ const HomeTabs = createBottomTabNavigator({
     Home: {
       screen: Home,
       options: {
-        title: 'Feed',
+        headerShown: false,
         tabBarIcon: ({ color, size }) => (
-          <Image
-            source={newspaper}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
+          <MsIcon icon={msHome} color={color} size={size} />
         ),
       },
     },
-    Updates: {
-      screen: Updates,
+    Search: {
+      screen: Search,
       options: {
+        headerShown: false,
         tabBarIcon: ({ color, size }) => (
-          <Image
-            source={bell}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
+          <MsIcon icon={msSearch} color={color} size={size} />
         ),
       },
     },
@@ -59,18 +44,6 @@ const RootStack = createNativeStackNavigator({
         headerShown: false,
       },
     },
-    Profile: {
-      screen: Profile,
-      linking: {
-        path: ':user(@[a-zA-Z0-9-_]+)',
-        parse: {
-          user: (value) => value.replace(/^@/, ''),
-        },
-        stringify: {
-          user: (value) => `@${value}`,
-        },
-      },
-    },
     Settings: {
       screen: Settings,
       options: ({ navigation }) => ({
@@ -81,6 +54,10 @@ const RootStack = createNativeStackNavigator({
           </HeaderButton>
         ),
       }),
+      options: {
+        title: 'Home',
+        headerShown: false,
+      },
     },
     NotFound: {
       screen: NotFound,
@@ -89,6 +66,10 @@ const RootStack = createNativeStackNavigator({
       },
       linking: {
         path: '*',
+      },
+      options: {
+        title: 'Home',
+        headerShown: false,
       },
     },
   },
