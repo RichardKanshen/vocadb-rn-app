@@ -20,7 +20,8 @@
       "package": "com.vocadbrnapp"
     },
     "web": {
-      "favicon": ""
+      "favicon": "",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-asset",

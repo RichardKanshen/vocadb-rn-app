@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { useColorScheme } from 'react-native';
 import { Navigation } from './navigation';
+import { PortalHost } from '@rn-primitives/portal';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,6 +27,8 @@ export function App() {
       onReady={() => {
         SplashScreen.hideAsync();
       }}
-    />
+    >
+		<PortalHost />
+    </Navigation>
   );
 }
